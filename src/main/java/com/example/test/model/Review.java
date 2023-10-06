@@ -23,6 +23,6 @@ public class Review {
     String comment;
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name="post_id", nullable=false)
-            @JsonIgnore
+    @JsonIgnore
     Posts posts;
 }
