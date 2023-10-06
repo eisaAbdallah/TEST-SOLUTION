@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface PostRepository {
 
-    void addPost(PostBodyDTO postBodyDTO);
+    void addPost(Posts posts);
     List<Posts> postsListPaged(int page,int size);
 
     void addReviewToPost(Posts review);

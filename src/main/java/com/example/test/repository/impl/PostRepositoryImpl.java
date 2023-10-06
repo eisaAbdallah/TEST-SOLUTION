@@ -23,9 +23,9 @@ public class PostRepositoryImpl implements PostRepository {
     PostsPagination postsPagination;
     @Override
     @Transactional
-    public void addPost(PostBodyDTO postBodyDTO) {
+    public void addPost(Posts postBody) {
 
-        entityManager.merge(postBodyDTO);
+        entityManager.merge(postBody);
     }
 
     @Override

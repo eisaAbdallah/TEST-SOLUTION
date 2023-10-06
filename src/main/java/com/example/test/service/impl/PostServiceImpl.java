@@ -19,7 +19,11 @@ public class PostServiceImpl implements PostService {
     PostRepository postRepository;
     @Override
     public void addPost(PostBodyDTO postBodyDTO) {
-        postRepository.addPost(postBodyDTO);
+        Posts posts=new Posts();
+        posts.setBody(posts.getBody());
+        posts.setTitle(posts.getTitle());
+
+        postRepository.addPost(posts);
     }
 
     @Override
