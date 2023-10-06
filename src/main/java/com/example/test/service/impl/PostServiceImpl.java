@@ -20,16 +20,16 @@ public class PostServiceImpl implements PostService {
     @Override
     public void addPost(PostBodyDTO postBodyDTO) {
         Posts posts=new Posts();
-        posts.setBody(posts.getBody());
-        posts.setTitle(posts.getTitle());
+        posts.setBody(postBodyDTO.getStoryBody());
+        posts.setTitle(postBodyDTO.getTitle());
 
         postRepository.addPost(posts);
     }
 
     @Override
-    public List<Posts> postsList(Pageable pageable) {
+    public List<Posts> postsList(int size,int page) {
 
-        List<Posts>posts =postRepository.postsListPaged(pageable.getPageNumber(),pageable.getPageSize());
+        List<Posts>posts =postRepository.postsListPaged(size,page);
         return posts;
     }
 
@@ -42,11 +42,4 @@ public class PostServiceImpl implements PostService {
         postRepository.addReviewToPost(posts);
     }
 
-    public List<Posts> getAllPosts(Integer pageNo, Integer pageSize)
-    {
-        Pageable paging = PageRequest.of(pageNo, pageSize);
-
-        List<Posts> pagedResult = postRepository.postsListPaged(pageNo,pageSize);
-
-        return pagedResult;
-}}
+   }

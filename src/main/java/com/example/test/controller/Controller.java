@@ -4,6 +4,7 @@ import com.example.test.data.PostBodyDTO;
 import com.example.test.model.Posts;
 import com.example.test.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
@@ -23,12 +24,12 @@ PostService postService;
 return ResponseEntity.ok("Post Successfully created");
     }
     @GetMapping("post/list")
-    public ResponseEntity<?> getPosts(@RequestParam(name = "size",required = false)int size,@RequestParam(name = "page",required = false)int page){
-        Pageable paging = PageRequest.of(page, size);
-        List<Posts> postsList=postService.postsList(paging);
+    public List<Posts> getPosts(@RequestParam(name = "size",required = false)int size,@RequestParam(name = "page",required = false)int page){
+
+        List<Posts> postsList=postService.postsList(size,page);
 
 
-        return ResponseEntity.ok("Posts Of the User"+postsList);
+        return postsList;
     }
 
     @PostMapping("add/review/post/{id}")

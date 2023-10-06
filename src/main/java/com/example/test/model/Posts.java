@@ -27,6 +27,7 @@ public class Posts {
     @OneToMany(mappedBy="posts")
     private Set<Review> reviewSet;
      @CreationTimestamp
+     @Column(name="created_on")
     private LocalDateTime createdOn;
 
     public Posts(int id, String title, String body, LocalDateTime createdOn) {
