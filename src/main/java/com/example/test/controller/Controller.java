@@ -1,6 +1,7 @@
 package com.example.test.controller;
 
 import com.example.test.data.PostBodyDTO;
+import com.example.test.data.PostsResponse;
 import com.example.test.model.Posts;
 import com.example.test.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,9 +25,9 @@ PostService postService;
 return ResponseEntity.ok("Post Successfully created");
     }
     @GetMapping("post/list")
-    public List<Posts> getPosts(@RequestParam(name = "size",required = false)int size,@RequestParam(name = "page",required = false)int page){
+    public List<PostsResponse> getPosts(@RequestParam(name = "size",required = false)int size,@RequestParam(name = "page",required = false)int page){
 
-        List<Posts> postsList=postService.postsList(size,page);
+        List<PostsResponse> postsList=postService.postsList(size,page);
 
 
         return postsList;

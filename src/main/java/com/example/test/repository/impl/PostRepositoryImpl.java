@@ -2,6 +2,7 @@ package com.example.test.repository.impl;
 
 import com.example.test.data.PostBodyDTO;
 import com.example.test.model.Posts;
+import com.example.test.model.Review;
 import com.example.test.repository.PostRepository;
 import com.example.test.repository.PostsPagination;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,7 +47,7 @@ List<Posts>postsList=posts.getContent();
 
     @Override
     @Transactional
-    public void addReviewToPost(Posts review) {
+    public void addReviewToPost(Review review) {
 entityManager.merge(review);
     }
 

@@ -8,6 +8,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import javax.persistence.*;
 import java.time.Instant;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Set;
 
 @Table(name="posts")
@@ -24,16 +25,11 @@ public class Posts {
     String  title;
     @Column(name="body")
     String body;
-    @OneToMany(mappedBy="posts")
-    private Set<Review> reviewSet;
+    @OneToMany(mappedBy="posts",fetch = FetchType.LAZY)
+    private List<Review> reviewSet;
      @CreationTimestamp
      @Column(name="created_on")
     private LocalDateTime createdOn;
 
-    public Posts(int id, String title, String body, LocalDateTime createdOn) {
-        this.id = id;
-        this.title = title;
-        this.body = body;
-        this.createdOn = createdOn;
-    }
+
 }

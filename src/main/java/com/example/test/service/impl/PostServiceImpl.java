@@ -1,6 +1,7 @@
 package com.example.test.service.impl;
 
 import com.example.test.data.PostBodyDTO;
+import com.example.test.data.PostsResponse;
 import com.example.test.model.Posts;
 import com.example.test.model.Review;
 import com.example.test.repository.PostRepository;
@@ -11,6 +12,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -27,10 +29,18 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public List<Posts> postsList(int size,int page) {
-
+    public List<PostsResponse> postsList(int size,int page) {
+        PostsResponse postsResponse=null;
         List<Posts>posts =postRepository.postsListPaged(size,page);
-        return posts;
+        List<PostsResponse>postsResponses=new ArrayList<>();
+        for(Posts result:posts){
+
+postsResponse=new PostsResponse(result.getId(),result.getTitle(),result.getTitle(),result.getCreatedOn(),result.getReviewSet());
+            postsResponses.add(postsResponse);
+        }
+
+
+        return postsResponses;
     }
 
     @Override
@@ -38,8 +48,10 @@ public class PostServiceImpl implements PostService {
 
         Posts posts= postRepository.findPostById(id);
         Review reviewData=new Review();
-        posts.getReviewSet().add(reviewData);
-        postRepository.addReviewToPost(posts);
+        reviewData.setComment(review);
+        reviewData.setPosts(posts);
+
+        postRepository.addReviewToPost(reviewData);
     }
 
    }
