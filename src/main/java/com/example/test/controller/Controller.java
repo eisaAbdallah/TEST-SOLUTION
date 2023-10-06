@@ -23,7 +23,7 @@ PostService postService;
 return ResponseEntity.ok("Post Successfully created");
     }
     @GetMapping("post/list")
-    public ResponseEntity<?> getPosts(@RequestParam(value = "size",required = false)int size,@RequestParam(value = "page",required = false)int page){
+    public ResponseEntity<?> getPosts(@RequestParam(name = "size",required = false)int size,@RequestParam(name = "page",required = false)int page){
         Pageable paging = PageRequest.of(page, size);
         List<Posts> postsList=postService.postsList(paging);
 
